@@ -43,7 +43,7 @@ public class Restaurant {
     }
 
     public void afficherCommandes() {
-        System.out.println("----- Commandes passées -----");
+        System.out.println("----- Commandes passees -----");
         for (Commandes c : commandes) {
             c.AfficherCommande();
         }
