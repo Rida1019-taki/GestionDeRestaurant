@@ -12,7 +12,6 @@ public class Main {
     static List<Serveurs> serveurs = new ArrayList<>();
     static String choice;
 
-    // ------------------------- AJOUTER PLATS PAR DÉFAUT -------------------------
     public static void initialiserMenu() {
         restaurant.ajouterPlat(new Plats("Tacos", 35));
         restaurant.ajouterPlat(new Plats("Burger Fromage", 45));
@@ -21,7 +20,6 @@ public class Main {
         restaurant.ajouterPlat(new SpecifiquePlats("Salade Healthy", 30, "Végétarien"));
     }
 
-    // ---------------------------------- MENU ----------------------------------
     public static void menu() {
         System.out.println("\n===== MENU PRINCIPAL - Gestion de Restaurant =====");
 
@@ -43,7 +41,6 @@ public class Main {
         choice = scanner.nextLine();
     }
 
-    // -------------------------------- MAIN ----------------------------------
     public static void main(String[] args) {
 
         System.out.println("=== Système de Gestion de Restaurant ===");
@@ -56,12 +53,10 @@ public class Main {
 
             switch (choice) {
 
-                // ------------ Afficher menu ------------
                 case "1":
                     restaurant.afficherMenu();
                     break;
 
-                // ------------ Ajouter Client ------------
                 case "2":
                     System.out.print("ID Client : ");
                     int idC = scanner.nextInt();
@@ -73,16 +68,15 @@ public class Main {
                     System.out.println("Client ajoute.");
                     break;
 
-                // ------------ Afficher Clients ------------
+
                 case "3":
                     for (Clients c : clients) {
                         System.out.println("Client ID :" + c.getId() + " | Nom : " + c.getNom());
                     }
                     break;
 
-                // ------------ Passer Commande ------------
+
                 case "4":
-                    // --- Passer une commande (version simple bzaf) ---
 
                     if (clients.isEmpty()) {
                         System.out.println("Aucun client trouvé.");
@@ -91,7 +85,7 @@ public class Main {
 
                     System.out.println("=== Passer une commande ===");
 
-// choisir client
+
                     System.out.print("ID Client : ");
                     int idClient = scanner.nextInt();
                     scanner.nextLine();
@@ -109,7 +103,6 @@ public class Main {
                         break;
                     }
 
-// choisir serveur (simple)
                     Serveurs serveur;
                     if (serveurs.isEmpty()) {
                         serveur = new Serveurs(1, "messi");
@@ -118,10 +111,8 @@ public class Main {
                         serveur = serveurs.get(0);
                     }
 
-// créer commande
                     Commandes commande = new Commandes(restaurant.getCommandes().size() + 1, client, serveur);
 
-// afficher menu
                     System.out.println("\n--- Choisir les plats ---");
 
                     List<Plats> menu = restaurant.getMenu();
@@ -129,7 +120,7 @@ public class Main {
                         System.out.println((i + 1) + ". " + menu.get(i).getNom() + " - " + menu.get(i).getPrix() + " DH");
                     }
 
-// ajouter plats
+
                     while (true) {
                         System.out.print("Numéro du plat (0 = stop) : ");
                         int num = scanner.nextInt();
@@ -148,7 +139,7 @@ public class Main {
 
                     scanner.nextLine(); // flush
 
-// enrengistrer
+
                     restaurant.ajouterCommande(commande);
                     client.AjouterCommande(commande);
                     serveur.prendreCommande(commande);
@@ -156,7 +147,6 @@ public class Main {
                     System.out.println("Commande effectuée !");
                     break;
 
-                // ------------ Afficher Commandes ------------
                 case "5":
                     restaurant.afficherCommandes();
                     break;
